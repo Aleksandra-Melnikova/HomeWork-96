@@ -14,7 +14,7 @@ const IngredientSchema = new Schema({
     },
 });
 
-const CoctailSchema = new Schema({
+const CocktailSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -23,10 +23,6 @@ const CoctailSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Name is required'],
-    },
-    price: {
-        type: Number,
-        required: true,
     },
    receipt:  {
        type: String,
@@ -43,5 +39,5 @@ const CoctailSchema = new Schema({
     ingredients: [IngredientSchema],
 });
 
-const Coctail = mongoose.model('Coctail', CoctailSchema);
-export default Coctail;
+const Cocktail = mongoose.model('Cocktail',  CocktailSchema);
+export default Cocktail;

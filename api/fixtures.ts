@@ -24,7 +24,7 @@ const run = async () => {
     //         description: 'Test desc for SSD ...'
     //     });
     //
-    // await Coctail.create({
+    // await Cocktail.create({
     //         category: cpuCategory._id,
     //         title: 'Intel',
     //         price: 350,
