@@ -44,14 +44,13 @@ export interface GlobalError {
 //   title: string;
 // }
 //
-// export interface Product {
-//   _id: string;
-//   title: string;
-//   price: number;
-//   image: string;
-// }
+export interface Cocktail {
+  _id: string;
+ name: string;
+  image: string;
+}
 //
-// export interface OneProduct {
+// export interface DetailCocktail {
 //   _id: string;
 //   user: {
 //     username: string;

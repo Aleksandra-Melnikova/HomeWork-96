@@ -4,6 +4,7 @@ import Layout from './components/UI/UI/Layout/Layout.tsx';
 import { Route, Routes } from 'react-router-dom';
 import RegisterPage from './features/users/RegisterPage.tsx';
 import LoginPage from './features/users/LoginPage.tsx';
+import Cocktails from './features/coctails/Cocktails.tsx';
 
 
 const App = () => {
@@ -13,10 +14,10 @@ const App = () => {
     <>
       <Layout>
         <Routes>
-          {/*<Route path="/" element={<Products />} />*/}
-          {/*<Route path="/products" element={<Products />} />*/}
+          <Route path="/" element={<Cocktails />} />
+          {/*<Route path="/coctails" element={<Cocktails />} />*/}
           {/*<Route path="/add_products" element={<ProductForm />} />*/}
-          {/*<Route path="/products/:productsId" element={<OneProduct />} />*/}
+          {/*<Route path="/coctails/:productsId" element={<DetailCocktail />} />*/}
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route

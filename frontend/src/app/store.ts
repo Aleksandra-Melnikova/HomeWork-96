@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";;
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import {
   FLUSH,
@@ -11,6 +11,7 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import { usersReducer } from "../features/users/UserSlice.ts";
+import { cocktailsReducer } from '../features/coctails/coctailsSlice.ts';
 
 const usersPersistConfig = {
   key: "store:users",
@@ -20,8 +21,7 @@ const usersPersistConfig = {
 
 const rootReducer = combineReducers({
   users: persistReducer(usersPersistConfig, usersReducer),
-  // adminAlbum: albumsAdminReducer,
-
+ cocktails: cocktailsReducer,
 });
 
 export const store = configureStore({
