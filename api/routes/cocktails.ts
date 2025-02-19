@@ -15,7 +15,7 @@ cocktailsRouter.get('/', async (req, res, next) => {
             const cocktails = await Cocktail.find({user: idQuery});
             res.send(cocktails);}
         else{
-            const cocktails = await Cocktail.find();
+            const cocktails = await Cocktail.find().select('name image _id');
             res.send(cocktails);
         }} catch (e) {
         next(e);

@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import config from "./config";
 import User from "./models/User";
 import {randomUUID} from "node:crypto";
+import Cocktail from "./models/Cocktail";
 
 
 
@@ -16,35 +17,7 @@ const run = async () => {
         console.log('Collections were not presents, skipping drop ');
     }
 
-    // const [Maria, Ivan] = await Category.create(
-    //     {
-    //         title: 'CPU',
-    //         description: 'Test desc for CPU'
-    //     },
-    //     {
-    //         title: 'SSD',
-    //         description: 'Test desc for SSD ...'
-    //     });
-    //
-    // await Cocktail.create({
-    //         category: cpuCategory._id,
-    //         title: 'Intel',
-    //         price: 350,
-    //         image: "fixtures/cpu.jpg",
-    //     },
-    //     {
-    //         category: cpuCategory._id,
-    //         title: 'Apple',
-    //         price: 700,
-    //     },
-    //     {
-    //         category: SSDCategory._id,
-    //         title: 'Lenovo',
-    //         price: 500,
-    //         image: "fixtures/ssd.jpg",
-    //     });
-    //
-    await User.create({
+    const[Jane, John]=await User.create({
             email: "Jane@mail.com",
             password: "123",
             token: randomUUID(),
@@ -61,6 +34,26 @@ const run = async () => {
             displayName: "John",
             image: "fixtures/John.webp",
         });
+
+
+
+
+    await Cocktail.create({
+            user: Jane._id,
+            name: 'Daiquiri',
+            receipt: 'Pour rum, lime juice and simple syrup into a cocktail shaker. Add ice, cover and shake until chilled. Strain into a chilled glass.',
+            image: "fixtures/Daiquiri.jpg",
+            ingredients: [{title: "white rum", quantity: "60"}, {title: "lime juice", quantity: "30"}, {title: "sugar syrup", quantity: "5"},  {title: "crushed ice", quantity: "10"}]
+        },
+        {
+            user: Jane._id,
+           name: 'Manhattan',
+            receipt: 'Pour bourbon, vermouth and angostura into a cocktail shaker and shake. Place ice cubes in the glass and then strain the mixture from the shaker into it. Garnish the cocktail with a cherry.',
+            image: "fixtures/Manhattan.jpg",
+            ingredients: [{title: "bourbon", quantity: "50"}, {title: " red vermouth", quantity: "25"}, {title: "Angostura", quantity: "1"},  {title: "ice", quantity: "10"}]
+        },
+        );
+
 
     await db.close();
 };
