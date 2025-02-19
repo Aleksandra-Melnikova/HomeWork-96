@@ -3,8 +3,8 @@ import cors from "cors";
 import mongoDb from "./mongoDb";
 import * as mongoose from "mongoose";
 import config from "./config";
-import userRouter from "./routes/users";
 import cocktailsRouter from "./routes/cocktails";
+import usersRouter from "./routes/users";
 
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.use('/cocktails', cocktailsRouter);
-app.use('/users', userRouter);
+app.use('/users', usersRouter);
 
 const run = async () => {
     await mongoose.connect(config.db);

@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import config from "./config";
+import User from "./models/User";
+import {randomUUID} from "node:crypto";
 
 
 
@@ -42,18 +44,23 @@ const run = async () => {
     //         image: "fixtures/ssd.jpg",
     //     });
     //
-    // await User.create({
-    //         username: "Jane",
-    //         password: "123",
-    //         token: randomUUID(),
-    //         role: "admin",
-    //     },
-    //     {
-    //         username: "John",
-    //         password: "123",
-    //         token: randomUUID(),
-    //         role: "user",
-    //     });
+    await User.create({
+            email: "Jane@mail.com",
+            password: "123",
+            token: randomUUID(),
+            role: "admin",
+        displayName: "Jane",
+        image: "fixtures/Jane1.jpg",
+
+        },
+        {
+           email: "John@mail.com",
+            password: "123",
+            token: randomUUID(),
+            role: "user",
+            displayName: "John",
+            image: "fixtures/John.webp",
+        });
 
     await db.close();
 };

@@ -53,6 +53,10 @@ const UserSchema = new Schema<
         required: true,
     },
     googleID: String,
+    image:{
+        type: String,
+        required: true,
+    },
 });
 
 UserSchema.pre('save', async function (next) {

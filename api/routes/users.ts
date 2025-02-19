@@ -5,16 +5,16 @@ import auth, {RequestWithUser} from "../middleware/auth";
 import {imagesUpload} from "../multer";
 
 
-const userRouter = express.Router();
+const usersRouter = express.Router();
 
 
-userRouter.post('/register',imagesUpload.single('image'), async (req, res, next) => {
+usersRouter.post('/register',imagesUpload.single('image'), async (req, res, next) => {
     try {
         const user = new User({
-            email: req.body.username,
+            email: req.body.email,
             password: req.body.password,
             displayName: req.body.displayName,
-            avatar: req.file ? 'images' + req.file.filename : null,
+            image: req.file ? 'images' + req.file.filename : null,
         });
 
         user.generateToken();
@@ -31,38 +31,37 @@ userRouter.post('/register',imagesUpload.single('image'), async (req, res, next)
     }
 });
 
-userRouter.post('/sessions', async (req, res, next) => {
+usersRouter.post('/sessions', async (req, res, next) => {
     try {
-        const user = await User.findOne({username: req.body.email});
+        const user = await User.findOne({email: req.body.email});
 
         if (!user) {
-            res.status(400).send({error: 'Email not found'});
+            res.status(400).send({error: 'Invalid email.'});
             return;
         }
 
         const isMatch = await user.checkPassword(req.body.password);
 
         if (!isMatch) {
-            res.status(400).send({error: 'Password is wrong!'});
+            res.status(400).send({error: 'Invalid password'});
             return;
         }
 
         user.generateToken();
         await user.save();
 
-        res.send({message: 'Email and password is correct', user});
+        res.send({message: 'You have successfully logged in!', user});
 
     } catch (error) {
         if (error instanceof Error.ValidationError) {
             res.status(400).send(error);
             return;
         }
-
         next(error);
     }
 });
 
-userRouter.delete('/sessions', auth, async (req, res, next) => {
+usersRouter.delete('/sessions', auth, async (req, res, next) => {
     let reqWithAuth = req as RequestWithUser;
     const userFromAuth = reqWithAuth.user;
 
@@ -88,4 +87,4 @@ userRouter.delete('/sessions', auth, async (req, res, next) => {
 // });
 
 
-export default userRouter;
+export default usersRouter;

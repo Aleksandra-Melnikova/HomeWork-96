@@ -15,7 +15,7 @@ export interface UserFields {
     password: string;
     token: string;
     role: string;
-    avatar: string;
+    image: string;
     displayName: string;
     googleID: string;
 }
