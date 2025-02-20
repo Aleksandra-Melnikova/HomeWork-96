@@ -10,7 +10,7 @@ const config =  {
         client_id:process.env.GOOGLE_CLIENT_ID,
         secretId:process.env.GOOGLE_SECRET_ID,
     },
-    db: 'mongodb://localhost/coctails',
+    db: 'mongodb://localhost/cocktails',
 };
 
 

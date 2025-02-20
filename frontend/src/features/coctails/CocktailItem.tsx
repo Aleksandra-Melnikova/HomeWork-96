@@ -5,9 +5,10 @@ interface Props {
   name: string;
   id: string;
   image: string;
+  isPublished?: boolean;
 }
 
-const CocktailItem: React.FC<Props> = ({ name, id, image }) => {
+const CocktailItem: React.FC<Props> = ({ name, id, image, isPublished }) => {
   return (
     <div className="card " style={{ width: "250px", minHeight: "200px" }}>
       <div
@@ -21,13 +22,13 @@ const CocktailItem: React.FC<Props> = ({ name, id, image }) => {
           alt={name}
         />
       </div>
-
       <div className="card-body">
         <h5 className="card-title text-center fs-4 mt-3">{name}</h5>
         <Link to={`/cocktails/${id}`} className="d-block mt-auto text-decoration-underline text-center form-link-nav">
           Learn more
         </Link>
       </div>
+      {/*{!isPublished ? <p className={'text-secondary'}> Published </p>: <p>Unpublished</p>}*/}
     </div>
   );
 };

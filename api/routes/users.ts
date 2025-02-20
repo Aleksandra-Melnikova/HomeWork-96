@@ -1,8 +1,8 @@
 import express from "express";
-import {Error} from "mongoose";
+import {imagesUpload} from "../multer";
 import User from "../models/User";
 import auth, {RequestWithUser} from "../middleware/auth";
-import {imagesUpload} from "../multer";
+import { Error } from "mongoose";
 
 
 const usersRouter = express.Router();
@@ -64,15 +64,16 @@ usersRouter.post('/sessions', async (req, res, next) => {
 usersRouter.delete('/sessions', auth, async (req, res, next) => {
     let reqWithAuth = req as RequestWithUser;
     const userFromAuth = reqWithAuth.user;
-
+    console.log(userFromAuth);
     try {
         const user = await User.findOne({_id: userFromAuth._id});
+
         if (user) {
             user.generateToken();
             await user.save();
-            res.send({message: 'Success logout'});
+            res.send({message: 'You have successfully logged out.'});
         }
-    }catch (e) {
+    } catch (e) {
         next(e);
     }
 });

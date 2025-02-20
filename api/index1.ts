@@ -1,10 +1,10 @@
 import express from "express";
-import cors from "cors";
-import mongoDb from "./mongoDb";
-import * as mongoose from "mongoose";
-import config from "./config";
 import cocktailsRouter from "./routes/cocktails";
 import usersRouter from "./routes/users";
+import mongoose from "mongoose";
+import config from "./config";
+import mongoDb from "./mongoDb";
+import cors from "cors";
 
 
 const app = express();

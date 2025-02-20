@@ -1,6 +1,6 @@
 import mongoose, {HydratedDocument, Model} from "mongoose";
-import bcrypt from 'bcrypt';
 import {UserFields} from "../types";
+import * as bcrypt from "bcrypt";
 import {randomUUID} from "node:crypto";
 
 
@@ -61,9 +61,7 @@ const UserSchema = new Schema<
 
 UserSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
-
     const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
-    console.log(salt);
     const hash = await bcrypt.hash(this.password, salt);
     this.password = hash;
     next();

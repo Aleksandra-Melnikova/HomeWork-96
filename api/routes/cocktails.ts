@@ -12,10 +12,10 @@ cocktailsRouter.get('/', async (req, res, next) => {
     try {
         const idQuery = req.query.userID as string;
         if(idQuery){
-            const cocktails = await Cocktail.find({user: idQuery});
+            const cocktails = await Cocktail.find({user: idQuery}).select('name image _id isPublished');
             res.send(cocktails);}
         else{
-            const cocktails = await Cocktail.find().select('name image _id');
+            const cocktails = await Cocktail.find().select('name image _id isPublished');
             res.send(cocktails);
         }} catch (e) {
         next(e);

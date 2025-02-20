@@ -11,7 +11,7 @@ const run = async () => {
     const db = mongoose.connection;
 
     try {
-        await db.dropCollection('coctails');
+        await db.dropCollection('cocktails');
         await db.dropCollection('users');
     } catch (e) {
         console.log('Collections were not presents, skipping drop ');
@@ -41,6 +41,7 @@ const run = async () => {
     await Cocktail.create({
             user: Jane._id,
             name: 'Daiquiri',
+        isPublished:true,
             receipt: 'Pour rum, lime juice and simple syrup into a cocktail shaker. Add ice, cover and shake until chilled. Strain into a chilled glass.',
             image: "fixtures/Daiquiri.jpg",
             ingredients: [{title: "white rum", quantity: "60"}, {title: "lime juice", quantity: "30"}, {title: "sugar syrup", quantity: "5"},  {title: "crushed ice", quantity: "10"}]
@@ -48,6 +49,15 @@ const run = async () => {
         {
             user: Jane._id,
            name: 'Manhattan',
+            isPublished:true,
+            receipt: 'Pour bourbon, vermouth and angostura into a cocktail shaker and shake. Place ice cubes in the glass and then strain the mixture from the shaker into it. Garnish the cocktail with a cherry.',
+            image: "fixtures/Manhattan.jpg",
+            ingredients: [{title: "bourbon", quantity: "50"}, {title: " red vermouth", quantity: "25"}, {title: "Angostura", quantity: "1"},  {title: "ice", quantity: "10"}]
+        },
+        {
+            user: Jane._id,
+            name: 'Manhattan',
+            isPublished:false,
             receipt: 'Pour bourbon, vermouth and angostura into a cocktail shaker and shake. Place ice cubes in the glass and then strain the mixture from the shaker into it. Garnish the cocktail with a cherry.',
             image: "fixtures/Manhattan.jpg",
             ingredients: [{title: "bourbon", quantity: "50"}, {title: " red vermouth", quantity: "25"}, {title: "Angostura", quantity: "1"},  {title: "ice", quantity: "10"}]

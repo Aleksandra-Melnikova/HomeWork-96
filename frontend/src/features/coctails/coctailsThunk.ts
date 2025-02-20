@@ -1,33 +1,33 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosApi from "../../axiosApi.ts";
-import { Cocktail } from '../../types';
+import { Cocktail, DetailCocktail } from '../../types';
 
 
 export const fetchCocktails = createAsyncThunk<Cocktail[], void>(
-  "coctails/fetchCocktails",
+  "cocktails/fetchCocktails",
   async () => {
     const cocktailResponse = await axiosApi<Cocktail[]>("/cocktails");
     return cocktailResponse.data || [];
   },
 );
 
-// export const fetchProductsOnCategory = createAsyncThunk<Product[], string>(
-//   "coctails/fetchProductsOnCategory",
-//   async (id) => {
-//     const productsResponse = await axiosApi<Product[]>(
-//       "/coctails?category_id=" + id,
-//     );
-//     return productsResponse.data || [];
-//   },
-// );
-//
-// export const getProduct = createAsyncThunk<OneProduct, string>(
-//   "coctails/getProduct",
-//   async (productId) => {
-//     const response = await axiosApi.get<OneProduct>(`/products/${productId}`);
-//     return response.data;
-//   },
-// );
+export const fetchCocktailsForOneUser = createAsyncThunk<Cocktail[], string>(
+  "cocktails/fetchProductsForOneUser",
+  async (id) => {
+    const cocktailResponse = await axiosApi<Cocktail[]>(
+      "/cocktails?userID=" + id,
+    );
+    return cocktailResponse.data || [];
+  },
+);
+
+export const getCocktail = createAsyncThunk<DetailCocktail, string>(
+  "cocktails/getCocktail",
+  async (id) => {
+    const response = await axiosApi.get<DetailCocktail>(`/cocktails/${id}`);
+    return response.data;
+  },
+);
 //
 // export const deleteProduct = createAsyncThunk<
 //   void,

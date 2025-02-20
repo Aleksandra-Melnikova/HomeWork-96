@@ -1,33 +1,26 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
 import CocktailItem from "./CocktailItem.tsx";
 import { selectFetchLoading, selectProductsItems } from "./coctailsSlice.ts";
-import { fetchCocktails, fetchCocktailsForOneUser } from './coctailsThunk.ts';
+import { fetchCocktailsForOneUser } from './coctailsThunk.ts';
 import Loader from '../../components/UI/UI/Loader/Loader.tsx';
+import { selectUser } from '../users/UserSlice.ts';
 
 const Cocktails = () => {
   const dispatch = useAppDispatch();
   const cocktails = useAppSelector(selectProductsItems);
   const isFetchLoading = useAppSelector(selectFetchLoading);
-  const params = new URLSearchParams(window.location.search);
-  const userId = params.get('userID');
+  const user = useAppSelector(selectUser);
 
-  const fetchAllCocktails = useCallback(() => {
-    if (userId) {
-      dispatch(fetchCocktailsForOneUser(userId));
-    } else {
-      dispatch(fetchCocktails());
-    }
-  }, [userId, dispatch]);
-  
+  const fetchAllCocktails = () => {
+    if(user)
+    dispatch(fetchCocktailsForOneUser(user._id));
+  };
+
 
   useEffect(() => {
     void fetchAllCocktails();
-  }, [fetchAllCocktails]);
-
-  // const fetchProductsOnId = async (id: string) => {
-  //   await dispatch(fetchProductsOnCategory(id));
-  // };
+  }, [dispatch]);
 
 
   return (
@@ -43,14 +36,15 @@ const Cocktails = () => {
                   {cocktails.length > 0 ? (
                     <>
                       {cocktails.map((c) => (
-                        c.isPublished ? (
+                      (
                           <CocktailItem
                             key={c._id}
                             name={c.name}
                             image={c.image}
                             id={c._id}
+                            isPublished={c.isPublished}
                           />
-                        ) : null
+                        )
                       ))}
                     </>
                   ) : (

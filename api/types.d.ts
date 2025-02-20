@@ -4,10 +4,11 @@ export interface Cocktail {
     name: string,
     receipt:string,
     image: string,
+    isPublished: boolean,
     ingredients: Ingredients[],
 }
 
-export type CocktailWithoutId = Omit<Cocktail, '_id'>
+export type CocktailWithoutId = Omit<Cocktail, '_id', "isPublished">
 
 
 export interface UserFields {

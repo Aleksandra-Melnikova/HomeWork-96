@@ -1,7 +1,9 @@
 import {NextFunction, Request, Response} from 'express';
-import {UserFields} from "../../../Shop/shop-api/types";
+
 import {HydratedDocument} from "mongoose";
-import User from "../../../Shop/shop-api/models/User";
+import {UserFields} from "../types";
+import User from "../models/User";
+
 
 export interface RequestWithUser extends Request {
     user: HydratedDocument<UserFields>

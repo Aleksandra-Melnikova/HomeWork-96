@@ -48,23 +48,23 @@ export interface Cocktail {
   _id: string;
  name: string;
   image: string;
+  isPublished: boolean;
 }
-//
-// export interface DetailCocktail {
-//   _id: string;
-//   user: {
-//     username: string;
-//     displayName: string;
-//     phoneNumber: string;
-//   };
-//   category: {
-//     title: string;
-//   };
-//   title: string;
-//   description: string;
-//   image: string;
-//   price: number;
-// }
+
+export interface  Ingredients {
+  title: string;
+  quantity: number;
+}
+
+export interface DetailCocktail {
+  _id: string;
+  user: string,
+  name: string,
+  receipt:string,
+  image: string,
+  isPublished: boolean,
+  ingredients: Ingredients[],
+}
 //
 // export interface IProductMutation {
 //   title: string;

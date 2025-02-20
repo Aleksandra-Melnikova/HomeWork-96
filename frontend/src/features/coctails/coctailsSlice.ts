@@ -1,25 +1,25 @@
-import { Cocktail} from '../../types';
+import { Cocktail, DetailCocktail } from '../../types';
 import { createSlice } from "@reduxjs/toolkit";
 import {
- fetchCocktails
+  fetchCocktails, fetchCocktailsForOneUser, getCocktail
 } from './coctailsThunk.ts';
 import { RootState } from "../../app/store.ts";
 
-interface IProductsState {
+interface ICocktailState {
   cocktails: Cocktail[];
   fetchLoading: boolean;
   // createLoading: boolean;
-  // oneProduct: OneProduct | null;
-  // fetchOneLoading: boolean;
+  oneCocktail: DetailCocktail | null;
+  fetchOneLoading: boolean;
   // deleteLoading: boolean;
 }
 
-const initialState: IProductsState = {
+const initialState:  ICocktailState = {
   cocktails: [],
   fetchLoading: false,
 //   createLoading: false,
-//   oneProduct: null,
-//   fetchOneLoading: false,
+  oneCocktail:null,
+  fetchOneLoading: false,
 //   deleteLoading: false,
 };
 
@@ -29,9 +29,9 @@ export const selectFetchLoading = (state: RootState) =>
   state.cocktails.fetchLoading;
 // export const selectCreateLoading = (state: RootState) =>
 //   state.products.createLoading;
-// export const selectOneProduct = (state: RootState) => state.products.oneProduct;
-// export const selectFetchOneLoading = (state: RootState) =>
-//   state.products.fetchOneLoading;
+export const selectOneCocktail = (state: RootState) => state.cocktails.oneCocktail;
+export const selectFetchOneLoading = (state: RootState) =>
+  state.cocktails.fetchOneLoading;
 // export const selectDeleteLoading = (state: RootState) =>
 //   state.products.deleteLoading;
 
@@ -51,29 +51,29 @@ export const cocktailsSlice = createSlice({
       .addCase(fetchCocktails.rejected, (state) => {
         state.fetchLoading = false;
       })
-      // .addCase(fetchProductsOnCategory.pending, (state) => {
-      //   state.fetchLoading = true;
-      // })
-      // .addCase(
-      //   fetchProductsOnCategory.fulfilled,
-      //   (state, { payload: products }) => {
-      //     state.fetchLoading = false;
-      //     state.products = products;
-      //   },
-      // )
-      // .addCase(fetchProductsOnCategory.rejected, (state) => {
-      //   state.fetchLoading = false;
-      // })
-      // .addCase(getProduct.pending, (state) => {
-      //   state.fetchOneLoading = true;
-      // })
-      // .addCase(getProduct.fulfilled, (state, { payload: product }) => {
-      //   state.fetchOneLoading = false;
-      //   state.oneProduct = product;
-      // })
-      // .addCase(getProduct.rejected, (state) => {
-      //   state.fetchOneLoading = false;
-      // })
+      .addCase(fetchCocktailsForOneUser.pending, (state) => {
+        state.fetchLoading = true;
+      })
+      .addCase(
+        fetchCocktailsForOneUser.fulfilled,
+        (state, { payload: cocktails }) => {
+          state.fetchLoading = false;
+          state.cocktails = cocktails;
+        },
+      )
+      .addCase(fetchCocktailsForOneUser.rejected, (state) => {
+        state.fetchLoading = false;
+      })
+      .addCase(getCocktail.pending, (state) => {
+        state.fetchOneLoading = true;
+      })
+      .addCase(getCocktail.fulfilled, (state, { payload: cocktail}) => {
+        state.fetchOneLoading = false;
+        state.oneCocktail = cocktail;
+      })
+      .addCase(getCocktail.rejected, (state) => {
+        state.fetchOneLoading = false;
+      })
       // .addCase(deleteProduct.pending, (state) => {
       //   state.deleteLoading = true;
       // })

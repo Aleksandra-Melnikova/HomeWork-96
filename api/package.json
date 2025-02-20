@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc writeFile.ts",
-    "dev": "nodemon index.ts",
+    "dev": "nodemon index1.ts",
     "seed": "ts-node fixtures.ts"
   },
   "keywords": [],
