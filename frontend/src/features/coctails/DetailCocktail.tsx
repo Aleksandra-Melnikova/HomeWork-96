@@ -2,14 +2,10 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { apiUrl } from "../../globalConstants.ts";
-import { getCocktail} from './coctailsThunk.ts';
-import {
+import { getCocktail } from "./coctailsThunk.ts";
+import { selectFetchOneLoading, selectOneCocktail } from "./coctailsSlice.ts";
 
-  selectFetchOneLoading, selectOneCocktail,
-
-} from './coctailsSlice.ts';
-
-import Loader from '../../components/UI/UI/Loader/Loader.tsx';
+import Loader from "../../components/UI/UI/Loader/Loader.tsx";
 
 const DetailCocktail = () => {
   const dispatch = useAppDispatch();
@@ -17,23 +13,11 @@ const DetailCocktail = () => {
   const isLoading = useAppSelector(selectFetchOneLoading);
   const cocktail = useAppSelector(selectOneCocktail);
 
-  // const isDeleteLoading = useAppSelector(selectDeleteLoading);
-console.log(params.id)
   useEffect(() => {
     if (params.id) {
       dispatch(getCocktail(params.id));
     }
   }, [dispatch, params.id]);
-
-  // const onDeleteProduct = async (id: string) => {
-  //   try {
-  //     if (user)
-  //       await dispatch(deleteProduct({ productId: id, token: user?.token }));
-  //     navigate("/products");
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
 
   return (
     cocktail && (
@@ -72,21 +56,13 @@ console.log(params.id)
                           <strong>Receipt</strong>: {cocktail.receipt}
                         </p>
                         <h4 className="text-muted fs-5">Ingredients: </h4>
-                       <ul>
-                         {cocktail.ingredients.map((ingredient) => (
-                           <li key={ingredient.title}>{ingredient.title} : {ingredient.quantity} ml</li>
-                         ))}
-                       </ul>
-
-                        {/*{user?.username === product.user.username ? (*/}
-                        {/*  // <ButtonLoading*/}
-                        {/*  //   isLoading={isDeleteLoading}*/}
-                        {/*  //   isDisabled={isDeleteLoading}*/}
-                        {/*  //   text={"delete"}*/}
-                        {/*  //   type="button"*/}
-                        {/*  //   onClick={() => onDeleteProduct(product?._id)}*/}
-                        {/*  // />*/}
-                        {/*) : null}*/}
+                        <ul>
+                          {cocktail.ingredients.map((ingredient) => (
+                            <li key={ingredient.title}>
+                              {ingredient.title} : {ingredient.quantity} ml
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </div>

@@ -6,7 +6,6 @@ import config from "./config";
 import mongoDb from "./mongoDb";
 import cors from "cors";
 
-
 const app = express();
 const port = 8000;
 

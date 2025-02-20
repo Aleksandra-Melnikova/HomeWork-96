@@ -1,9 +1,13 @@
-import { Cocktail, DetailCocktail } from '../../types';
+import { Cocktail, DetailCocktail } from "../../types";
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  createCocktail, deleteCocktail,
-  fetchCocktails, fetchCocktailsForOneUser, getCocktail, publishCocktail
-} from './coctailsThunk.ts';
+  createCocktail,
+  deleteCocktail,
+  fetchCocktails,
+  fetchCocktailsForOneUser,
+  getCocktail,
+  publishCocktail,
+} from "./coctailsThunk.ts";
 import { RootState } from "../../app/store.ts";
 
 interface ICocktailState {
@@ -16,11 +20,11 @@ interface ICocktailState {
   publishedLoading: boolean;
 }
 
-const initialState:  ICocktailState = {
+const initialState: ICocktailState = {
   cocktails: [],
   fetchLoading: false,
   createLoading: false,
-  oneCocktail:null,
+  oneCocktail: null,
   fetchOneLoading: false,
   deleteLoading: false,
   publishedLoading: false,
@@ -32,7 +36,8 @@ export const selectFetchLoading = (state: RootState) =>
   state.cocktails.fetchLoading;
 export const selectCreateLoading = (state: RootState) =>
   state.cocktails.createLoading;
-export const selectOneCocktail = (state: RootState) => state.cocktails.oneCocktail;
+export const selectOneCocktail = (state: RootState) =>
+  state.cocktails.oneCocktail;
 export const selectFetchOneLoading = (state: RootState) =>
   state.cocktails.fetchOneLoading;
 export const selectDeleteLoading = (state: RootState) =>
@@ -72,7 +77,7 @@ export const cocktailsSlice = createSlice({
       .addCase(getCocktail.pending, (state) => {
         state.fetchOneLoading = true;
       })
-      .addCase(getCocktail.fulfilled, (state, { payload: cocktail}) => {
+      .addCase(getCocktail.fulfilled, (state, { payload: cocktail }) => {
         state.fetchOneLoading = false;
         state.oneCocktail = cocktail;
       })
@@ -98,9 +103,9 @@ export const cocktailsSlice = createSlice({
       .addCase(createCocktail.rejected, (state) => {
         state.createLoading = false;
       })
-  .addCase(publishCocktail.pending, (state) => {
-      state.publishedLoading = true;
-    })
+      .addCase(publishCocktail.pending, (state) => {
+        state.publishedLoading = true;
+      })
       .addCase(publishCocktail.fulfilled, (state) => {
         state.publishedLoading = false;
       })

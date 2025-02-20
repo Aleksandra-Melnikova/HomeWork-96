@@ -108,7 +108,6 @@ usersRouter.post('/sessions', async (req, res, next) => {
 usersRouter.delete('/sessions', auth, async (req, res, next) => {
     let reqWithAuth = req as RequestWithUser;
     const userFromAuth = reqWithAuth.user;
-    console.log(userFromAuth);
     try {
         const user = await User.findOne({_id: userFromAuth._id});
 

@@ -3,8 +3,8 @@ import "./ToolBar.css";
 
 import UserMenu from "./UserMenu.tsx";
 import AnonymousMenu from "./AnonymousMenu.tsx";
-import { useAppSelector } from '../../../../app/hooks.ts';
-import { selectUser } from '../../../../features/users/UserSlice.ts';
+import { useAppSelector } from "../../../../app/hooks.ts";
+import { selectUser } from "../../../../features/users/UserSlice.ts";
 
 const ToolBar = () => {
   const user = useAppSelector(selectUser);
@@ -20,7 +20,11 @@ const ToolBar = () => {
           </NavLink>
           <div className="ms-auto">
             <ul className="navbar-nav">
-              {user ? <UserMenu image={user.image} username={user.displayName} /> : <AnonymousMenu />}
+              {user ? (
+                <UserMenu image={user.image} username={user.displayName} />
+              ) : (
+                <AnonymousMenu />
+              )}
             </ul>
           </div>
         </div>

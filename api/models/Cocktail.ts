@@ -3,17 +3,6 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-// const IngredientSchema = new Schema({
-//     title: {
-//         type: String,
-//         required: [true, 'Title is required'],
-//     },
-//     quantity: {
-//         type: Number,
-//         required: [true, 'Quantity is required'],
-//     },
-// });
-
 const CocktailSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
@@ -30,7 +19,7 @@ const CocktailSchema = new Schema({
    },
     image: {
         type: String,
-        required: [true, 'User is required'],
+        required: [true, 'Image is required'],
     },
     isPublished:{
         type: Boolean,

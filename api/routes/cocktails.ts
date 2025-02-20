@@ -1,6 +1,6 @@
 import express from "express";
 import {imagesUpload} from "../multer";
-import { CocktailWithoutId, Ingredients} from "../types";
+import { CocktailWithoutId} from "../types";
 import Cocktail from "../models/Cocktail";
 import auth, {RequestWithUser} from "../middleware/auth";
 import permit from "../middleware/permit";

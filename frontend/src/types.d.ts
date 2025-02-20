@@ -43,24 +43,24 @@ export interface GlobalError {
 
 export interface Cocktail {
   _id: string;
- name: string;
+  name: string;
   image: string;
   isPublished: boolean;
 }
 
-export interface  Ingredients {
+export interface Ingredients {
   title: string;
   quantity: number;
 }
 
 export interface DetailCocktail {
   _id: string;
-  user: string,
-  name: string,
-  receipt:string,
-  image: string,
-  isPublished: boolean,
-  ingredients: Ingredients[],
+  user: string;
+  name: string;
+  receipt: string;
+  image: string;
+  isPublished: boolean;
+  ingredients: Ingredients[];
 }
 
 export interface CocktailMutation {
@@ -69,4 +69,3 @@ export interface CocktailMutation {
   ingredients: string;
   image: File | null;
 }
-
