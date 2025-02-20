@@ -1,6 +1,7 @@
 import { Cocktail, DetailCocktail } from '../../types';
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  createCocktail,
   fetchCocktails, fetchCocktailsForOneUser, getCocktail
 } from './coctailsThunk.ts';
 import { RootState } from "../../app/store.ts";
@@ -8,7 +9,7 @@ import { RootState } from "../../app/store.ts";
 interface ICocktailState {
   cocktails: Cocktail[];
   fetchLoading: boolean;
-  // createLoading: boolean;
+  createLoading: boolean;
   oneCocktail: DetailCocktail | null;
   fetchOneLoading: boolean;
   // deleteLoading: boolean;
@@ -17,7 +18,7 @@ interface ICocktailState {
 const initialState:  ICocktailState = {
   cocktails: [],
   fetchLoading: false,
-//   createLoading: false,
+  createLoading: false,
   oneCocktail:null,
   fetchOneLoading: false,
 //   deleteLoading: false,
@@ -27,8 +28,8 @@ export const selectProductsItems = (state: RootState) =>
   state.cocktails.cocktails;
 export const selectFetchLoading = (state: RootState) =>
   state.cocktails.fetchLoading;
-// export const selectCreateLoading = (state: RootState) =>
-//   state.products.createLoading;
+export const selectCreateLoading = (state: RootState) =>
+  state.cocktails.createLoading;
 export const selectOneCocktail = (state: RootState) => state.cocktails.oneCocktail;
 export const selectFetchOneLoading = (state: RootState) =>
   state.cocktails.fetchOneLoading;
@@ -84,15 +85,15 @@ export const cocktailsSlice = createSlice({
       //   state.deleteLoading = false;
       // })
       //
-      // .addCase(createProduct.pending, (state) => {
-      //   state.createLoading = true;
-      // })
-      // .addCase(createProduct.fulfilled, (state) => {
-      //   state.createLoading = false;
-      // })
-      // .addCase(createProduct.rejected, (state) => {
-      //   state.createLoading = false;
-      // });
+      .addCase(createCocktail.pending, (state) => {
+        state.createLoading = true;
+      })
+      .addCase(createCocktail.fulfilled, (state) => {
+        state.createLoading = false;
+      })
+      .addCase(createCocktail.rejected, (state) => {
+        state.createLoading = false;
+      });
   },
 });
 

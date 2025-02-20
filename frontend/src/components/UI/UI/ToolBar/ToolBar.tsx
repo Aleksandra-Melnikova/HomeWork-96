@@ -10,7 +10,7 @@ const ToolBar = () => {
   const user = useAppSelector(selectUser);
 
   return (
-    <>
+    <div className="mb-5">
       <nav className="navbar navbar-expand-lg toolbar-background">
         <div className="container w-75">
           <NavLink to="/">
@@ -25,7 +25,7 @@ const ToolBar = () => {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 

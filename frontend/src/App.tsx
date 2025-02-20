@@ -8,6 +8,7 @@ import Cocktails from './features/coctails/Cocktails.tsx';
 import DetailCocktail from './features/coctails/DetailCocktail.tsx';
 import { useAppSelector } from './app/hooks.ts';
 import { selectUser } from './features/users/UserSlice.ts';
+import CocktailForm from './features/coctails/CocktailForm.tsx';
 
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
           <Route path="/" element={<Cocktails />} />
           <Route path="/cocktails" element={<Cocktails />} />
           <Route path={`/cocktails?userID=${user?._id}`} element={<Cocktails/>} />
-          {/*<Route path="/add_products" element={<ProductForm />} />*/}
+          <Route path="/add_cocktail" element={<CocktailForm />} />
           <Route path="/cocktails/:id" element={<DetailCocktail/>} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />

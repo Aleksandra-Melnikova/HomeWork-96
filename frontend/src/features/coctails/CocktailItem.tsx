@@ -6,9 +6,10 @@ interface Props {
   id: string;
   image: string;
   isPublished?: boolean;
+  userID?: string | boolean;
 }
 
-const CocktailItem: React.FC<Props> = ({ name, id, image, isPublished }) => {
+const CocktailItem: React.FC<Props> = ({ name, id, image, isPublished , userID }) => {
   return (
     <div className="card " style={{ width: "250px", minHeight: "200px" }}>
       <div
@@ -27,8 +28,7 @@ const CocktailItem: React.FC<Props> = ({ name, id, image, isPublished }) => {
         <Link to={`/cocktails/${id}`} className="d-block mt-auto text-decoration-underline text-center form-link-nav">
           Learn more
         </Link>
-      </div>
-      {/*{!isPublished ? <p className={'text-secondary'}> Published </p>: <p>Unpublished</p>}*/}
+      </div>{userID?<>{isPublished ? <p className={'text-secondary text-center'}> Published </p>: <p className={'text-center text-secondary'}>Unpublished</p>}</>:null}
     </div>
   );
 };

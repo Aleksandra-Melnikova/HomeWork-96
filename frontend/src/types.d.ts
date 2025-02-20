@@ -39,11 +39,6 @@ export interface GlobalError {
   error: string;
 }
 
-// export interface Category {
-//   _id: string;
-//   title: string;
-// }
-//
 export interface Cocktail {
   _id: string;
  name: string;
@@ -65,11 +60,11 @@ export interface DetailCocktail {
   isPublished: boolean,
   ingredients: Ingredients[],
 }
-//
-// export interface IProductMutation {
-//   title: string;
-//   description: string;
-//   image: File | null;
-//   price: number;
-//   category: string;
-// }
+
+export interface CocktailMutation {
+  name: string;
+  receipt: string;
+  ingredients: string;
+  image: File | null;
+}
+

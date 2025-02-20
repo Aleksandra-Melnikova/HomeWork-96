@@ -25,33 +25,38 @@ const Cocktails = () => {
     void fetchAllCocktails();
   }, [fetchAllCocktails]);
 
-  // const fetchProductsOnId = async (id: string) => {
-  //   await dispatch(fetchProductsOnCategory(id));
-  // };
 
 
   return (
-    <>
-      <div className="container row justify-content-between mt-5 px-0">
+      <div className="container row justify-content-between mt-0 pt-0 px-0">
         <div className="col-9">
           <>
             {isFetchLoading ? (
               <Loader />
             ) : (
-              <div className="d-flex flex-row gap-5 flex-wrap align-items-center mt-5">
+              <div className="d-flex flex-row gap-5 flex-wrap align-items-center mt-2">
                 <>
                   {cocktails.length > 0 ? (
-                    <>
-                      {cocktails.map((c) => (
+                    <>{userId?<> {cocktails.map((c) => (
+                      <CocktailItem
+                        key={c._id}
+                        name={c.name}
+                        image={c.image}
+                        id={c._id}
+                        isPublished={c.isPublished}
+                        userID= {true}
+                      />
+                    ))}</>: <>{cocktails.map((c) => (
                         c.isPublished ? (
-                          <CocktailItem
-                            key={c._id}
-                            name={c.name}
-                            image={c.image}
-                            id={c._id}
-                          />
-                        ) : null
-                      ))}
+                        <CocktailItem
+                        key={c._id}
+                      name={c.name}
+                      image={c.image}
+                      id={c._id}
+                        userID = {false}
+                    />
+                  ) : null
+                    ))} </>}
                     </>
                   ) : (
                     <p> No cocktails</p>
@@ -62,7 +67,6 @@ const Cocktails = () => {
           </>
         </div>
       </div>
-    </>
   );
 };
 
