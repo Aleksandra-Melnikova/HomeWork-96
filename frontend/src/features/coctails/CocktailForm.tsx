@@ -5,6 +5,7 @@ import { CocktailMutation } from '../../types';
 import FileInput from '../../components/FileInput/FileInput.tsx';
 import ButtonLoading from '../../components/UI/UI/ButtonLoading/ButtonLoading.tsx';
 import { selectCreateLoading } from './coctailsSlice.ts';
+import { useNavigate } from 'react-router-dom';
 
 
 const initialState = {
@@ -19,11 +20,14 @@ const CocktailForm = () => {
   const [ingredients, setIngredients] = useState<{title: string; quantity: number}[]>([]);
   const dispatch = useAppDispatch();
   const isCreateLoading = useAppSelector(selectCreateLoading);
+  const navigate = useNavigate();
 
   const submitFormHandler = (e: FormEvent) => {
     e.preventDefault();
-    console.log(JSON.stringify(ingredients));
     dispatch(createCocktail({...form, ingredients: JSON.stringify(ingredients)}));
+    setForm(initialState);
+    setIngredients([]);
+    navigate('/')
   };
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

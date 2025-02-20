@@ -48,40 +48,16 @@ console.log(formData)
     await axiosApi.post("/cocktails", formData,{headers: {Authorization:  token}});
   },
 );
-//
-// export const deleteProduct = createAsyncThunk<
-//   void,
-//   { productId: string; token: string }
-// >("coctails/deleteProduct", async ({ productId, token }) => {
-//   return axiosApi.delete(`${apiUrl}/products/${productId}`, {
-//     headers: { Authorization: `${token}` },
-//   });
-// });
-//
-// export const createProduct = createAsyncThunk<
-//   Product,
-//   { productMutation: IProductMutation },
-//   { state: RootState }
-// >("coctails/createProduct", async ({ productMutation }, { getState }) => {
-//   const token = getState().users.user?.token;
-//
-//   try {
-//     const formData = new FormData();
-//     const keys = Object.keys(productMutation) as (keyof IProductMutation)[];
-//
-//     keys.forEach((key) => {
-//       const value = productMutation[key];
-//
-//       if (value !== null) {
-//         formData.append(key, value as string | File);
-//       }
-//     });
-//
-//     const response = await axiosApi.post<Product>("/products", formData, {
-//       headers: { Authorization: token },
-//     });
-//     return response.data;
-//   } catch (error) {
-//     throw error;
-//   }
-// });
+export const deleteCocktail = createAsyncThunk<void, string>(
+  "cocktails/deleteCocktail",
+  async (id) => {
+    return axiosApi.delete(`/cocktails/${id}`, {});
+  },
+);
+
+export const publishCocktail = createAsyncThunk<void, string>(
+  "cocktails/publishCocktail",
+  async (id) => {
+    return axiosApi.patch(`/cocktails/${id}/togglePublished`, {});
+  },
+);

@@ -1,6 +1,28 @@
 .btn-color{
   background-color:#ac40ab;
 }
+.btn-color-new{
+  margin-top: 10px;
+  color: #000;
+  background-color: #ac40ab;
+  font-size: 15px;
+  text-align: center;
+  font-weight: normal;
+  width: 100%;
+  padding: 5px 15px;
+  border-radius: 10px;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px #fff;
+  border: none;
+  transition: all 0.5s ease 0s;
+}
+
+.btn-color-new:hover{
+  color: #fff;
+  letter-spacing: 3px;
+  box-shadow: none;
+  outline: none;
+}
+
 .form-container{
   background: #ecf0f3;
   font-family: 'Nunito', sans-serif;

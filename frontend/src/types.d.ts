@@ -15,6 +15,7 @@ export interface User {
   email: string;
   displayName: string;
   image: string;
+  role: string;
   token: string;
 }
 
