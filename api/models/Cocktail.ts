@@ -3,16 +3,16 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const IngredientSchema = new Schema({
-    title: {
-        type: String,
-        required: [true, 'Title is required'],
-    },
-    quantity: {
-        type: Number,
-        required: [true, 'Quantity is required'],
-    },
-});
+// const IngredientSchema = new Schema({
+//     title: {
+//         type: String,
+//         required: [true, 'Title is required'],
+//     },
+//     quantity: {
+//         type: Number,
+//         required: [true, 'Quantity is required'],
+//     },
+// });
 
 const CocktailSchema = new Schema({
     user: {
@@ -36,7 +36,10 @@ const CocktailSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    ingredients: [IngredientSchema],
+    ingredients: [{
+        title: {type: String, required: true},
+        quantity: {type: Number, required: true},
+    }]
 });
 
 const Cocktail = mongoose.model('Cocktail',  CocktailSchema);

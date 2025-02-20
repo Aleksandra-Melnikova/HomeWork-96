@@ -47,12 +47,14 @@ cocktailsRouter.post('/', imagesUpload.single('image'), auth, permit('admin','us
     let reqWithAuth = req as RequestWithUser;
     const userFromAuth = reqWithAuth.user;
 
+    const parsedIngredients = req.body.ingredients? JSON.parse(req.body.ingredients):[];
+
     const newCocktail:  CocktailWithoutId  = {
         user:  (userFromAuth._id).toString(),
         name: req.body.name as string,
         receipt: req.body.receipt as string,
         image:'images' + req.file?.filename,
-        ingredients: req.body.ingredients as Ingredients[],
+        ingredients: parsedIngredients,
     };
 
     try {
