@@ -2,10 +2,11 @@
 import { LoginMutation } from '../../types';
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
-import { selectLoginError, selectLoginLoading } from './UserSlice.ts';
+import { selectLoginError, selectLoginLoading, selectUser } from './UserSlice.ts';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { login } from './UserThunk.ts';
+import { googleLogin, login } from './UserThunk.ts';
 import ButtonLoading from '../../components/UI/UI/ButtonLoading/ButtonLoading.tsx';
+import { GoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
   const [form, setForm] = useState<LoginMutation>({
@@ -16,6 +17,7 @@ const Login = () => {
   const loginError = useAppSelector(selectLoginError);
   const navigate = useNavigate();
   const loading = useAppSelector(selectLoginLoading);
+  const user = useAppSelector(selectUser);
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setForm((prevState) => {
@@ -32,6 +34,11 @@ const Login = () => {
       console.error(e);
     }
   };
+  const googleLoginHandler = async (credential: string) => {
+    await dispatch(googleLogin(credential)).unwrap();
+    console.log(user);
+    navigate("/");
+  };
 
   return(<div className="container-fluid">
 
@@ -40,6 +47,18 @@ const Login = () => {
         <div className="form-icon"><i className="fa fa-user"></i></div>
         <h3 className="title">Login</h3>
         <form className="form-horizontal" onSubmit={submitFormHandler}>
+          <div className={'d-flex justify-content-center  mb-3 rounded-3 '}>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                if (credentialResponse.credential) {
+                  void googleLoginHandler(credentialResponse.credential);
+                }
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </div>
           <div className="form-group">
             {loginError ? (
                             <div

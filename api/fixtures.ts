@@ -55,12 +55,20 @@ const run = async () => {
             ingredients: [{title: "bourbon", quantity: "50"}, {title: " red vermouth", quantity: "25"}, {title: "Angostura", quantity: "1"},  {title: "ice", quantity: "10"}]
         },
         {
-            user: Jane._id,
-            name: 'Manhattan',
+            user: John._id,
+            name: 'Boulevardier',
             isPublished:false,
-            receipt: 'Pour bourbon, vermouth and angostura into a cocktail shaker and shake. Place ice cubes in the glass and then strain the mixture from the shaker into it. Garnish the cocktail with a cherry.',
-            image: "fixtures/Manhattan.jpg",
-            ingredients: [{title: "bourbon", quantity: "50"}, {title: " red vermouth", quantity: "25"}, {title: "Angostura", quantity: "1"},  {title: "ice", quantity: "10"}]
+            receipt: 'PFill a glass with ice. Pour in Campari, vermouth and bourbon or whiskey. Stir and garnish with a strip of zest.',
+            image: "fixtures/Boulevardier.jpg",
+            ingredients: [{title: "Campari", quantity: "30"}, {title: " sweet vermouth", quantity: "30"}, {title: "bourbon or rye whiskey", quantity: "40"},  {title: "orange zest", quantity: "10"}]
+        },
+        {
+            user: John._id,
+            name: 'Irish coffee',
+            isPublished:true,
+            receipt: 'Pour coffee into a tall glass and dissolve sugar in it. Add whiskey and stir. Place a teaspoon directly over the drink and carefully pour cream into it. This way, it will lie in an even layer on top of the cocktail.',
+            image: "fixtures/IrishCoffe.jpg",
+            ingredients: [{title: "hot coffee", quantity: "80"}, {title: " brown suga", quantity: "10"}, {title: "Irish whiskey", quantity: "40"},  {title: "whipped cream", quantity: "30"}]
         },
         );
 

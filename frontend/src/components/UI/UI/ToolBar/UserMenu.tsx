@@ -24,9 +24,13 @@ const UserMenu: React.FC<UserMenuProps> = ({ username, image }) => {
         <div className={'d-flex'}>
           <div className={"ms-auto"}><p className={'d-inline-block text-white ms-2 mt-3 mb-0'}>
           Привет, <strong>{username}! </strong>
-        </p>
-          <div className={' ms-4 d-inline-block img-block'}><img className={'img-user'} src={`${apiUrl}/${image}`}
-                                                                 alt={username}/></div></div>
+        </p>{user?.googleID ? <>
+              <div className={' ms-4 d-inline-block img-block'}><img className={'img-user'} src={image? image: "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                                                                     alt={username}/></div>
+            </> :
+            <div className={' ms-4 d-inline-block img-block'}><img className={'img-user'} src={`${apiUrl}/${image}`}
+                                                                   alt={username}/></div>}
+          </div>
         </div>
 
         <NavLink

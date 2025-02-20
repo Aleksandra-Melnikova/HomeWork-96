@@ -16,6 +16,7 @@ export interface User {
   displayName: string;
   image: string;
   role: string;
+  googleID?: string;
   token: string;
 }
 
