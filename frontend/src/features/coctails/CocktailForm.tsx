@@ -7,6 +7,7 @@ import ButtonLoading from "../../components/UI/UI/ButtonLoading/ButtonLoading.ts
 import { selectCreateLoading } from "./coctailsSlice.ts";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { selectUser } from '../users/UserSlice.ts';
 
 const initialState = {
   name: "",
@@ -21,6 +22,7 @@ const CocktailForm = () => {
     { title: string; quantity: number }[]
   >([]);
   const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
   const isCreateLoading = useAppSelector(selectCreateLoading);
   const navigate = useNavigate();
   const [error, setError] = useState<boolean>(false);
@@ -46,7 +48,7 @@ const CocktailForm = () => {
       );
       setForm(initialState);
       setIngredients([]);
-      navigate("/");
+      navigate(`/cocktails?userID=${user?._id}`);
     }
   };
 
