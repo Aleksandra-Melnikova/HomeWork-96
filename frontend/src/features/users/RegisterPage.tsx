@@ -31,7 +31,6 @@ const Register = () => {
   const submitFormHandler = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      console.log(form);
       await dispatch(register(form)).unwrap();
       navigate("/");
     } catch (e) {
